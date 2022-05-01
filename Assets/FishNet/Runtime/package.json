@@ -3,7 +3,7 @@
   "version": "9.2.0",
   "displayName": "FishNet",
   "description": "A free open source, easy to use, feature rich networking library for Unity",
-  "unity": "2019.4.28",
+  "unity": "2019.4",
   "keywords": [
     "fish",
     "networking"
