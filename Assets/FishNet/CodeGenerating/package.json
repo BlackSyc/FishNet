@@ -1,0 +1,13 @@
+{
+  "name": "com.firstgeargames.fishnet.codegenerating",
+  "version": "1.4.6",
+  "displayName": "FishNet Code Generating",
+  "description": "Contains serialization logic",
+  "unity": "2019.4",
+  "keywords": [
+    "fish",
+    "networking"
+  ],
+  "license": "MIT",
+  "dependencies": {}
+}
