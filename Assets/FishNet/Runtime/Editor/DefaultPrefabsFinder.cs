@@ -34,27 +34,33 @@ namespace FishNet.Editing
         {
             if (_defaultPrefabs == null)
             {
-                List<UnityEngine.Object> results = Finding.GetScriptableObjects<DefaultPrefabObjects>(true, true);
+                // Changed fishnet assembly boolean to false below, to be able to use other asset locations.
+                List<UnityEngine.Object> results = Finding.GetScriptableObjects<DefaultPrefabObjects>(false, true);
                 if (results.Count > 0)
                     _defaultPrefabs = (DefaultPrefabObjects)results[0];
             }
 
             justPopulated = false;
-            //If not found then try to create file.
-            if (_defaultPrefabs == null)
-            {
-                if (DefaultPrefabObjects.CanAutomate)
-                {
-                    DefaultPrefabObjects dpo = ScriptableObject.CreateInstance<DefaultPrefabObjects>();
-                    //Get save directory.
-                    string savePath = Finding.GetFishNetRuntimePath(true);
-                    AssetDatabase.CreateAsset(dpo, Path.Combine(savePath, $"{nameof(DefaultPrefabObjects)}.asset"));
-                }
-                else
-                {
-                    Debug.LogError($"Cannot create DefaultPrefabs because auto create is blocked.");
-                }
-            }
+            
+            // Commented out prefab creation below because it cannot be run when imported into the packages folder.
+            // Todo: Fix that the runtime path is the path of the assembly definition that contains fishnet, rather
+            // than fishnet itself.
+            
+            // //If not found then try to create file.
+            //  if (_defaultPrefabs == null)
+            //  {
+            //      if (DefaultPrefabObjects.CanAutomate)
+            //      {
+            //          DefaultPrefabObjects dpo = ScriptableObject.CreateInstance<DefaultPrefabObjects>();
+            //          //Get save directory.
+            //          string savePath = Finding.GetFishNetRuntimePath(true);
+            //          AssetDatabase.CreateAsset(dpo, Path.Combine(savePath, $"{nameof(DefaultPrefabObjects)}.asset"));
+            //      }
+            //      else
+            //      {
+            //          Debug.LogError($"Cannot create DefaultPrefabs because auto create is blocked.");
+            //      }
+            //  }
 
             //If still null.
             if (_defaultPrefabs == null)
